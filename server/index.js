@@ -35,25 +35,30 @@
 //   });
 // }
 const mongoose = require('mongoose');
+const express = require('express');
+const cors = require('cors');
 
-main().catch(err => console.log(err));
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test');
-  console.log('MongoDB connected');
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/test')
+.then(() => {
+console.log('MongoDB connected');
+const mongoose = require('mongoose');
+const express = require('express');
+const cors = require('cors');
 
-  const User = mongoose.model('User', {
-    name: String,
-    age: Number
-  });
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  try {
-    const user = await User.find({});
-    console.log('Here is the record:');
-    console.log(user);
-  } catch (error) {
-    console.log('Error retrieving user:', error);
-  } finally {
-    mongoose.disconnect();
-  }
-}
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/test')
+.then(() => {
+console.log('MongoDB connected');
+})
+.catch(err => {
+console.log('MongoDB connection error:', err);
+});
